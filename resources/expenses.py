@@ -38,3 +38,10 @@ def get_one_expense(id):
   return jsonify(data=model_to_dict(expense), status={"code": 200, "message":"Success"})
 
 # Update route
+@expense.route('/<id>', methods=["PUT"])
+def update_expense(id):
+  payload = request.get_json()
+  query = models.Expense.update(**payload).where(models.Expense.id==id)
+  query.execute()
+  return jsonify(data=model_to_dict(models.Expense.get_by_id(id)), status={"code": 200, "message": "resource updated successfully"})
+  
