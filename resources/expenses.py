@@ -10,6 +10,7 @@ from playhouse.shortcuts import model_to_dict
 # prefix all our apis
 expense = Blueprint('expenses', 'expense')
 
+# Index route
 @expense.route('/', methods=["GET"])
 def get_expenses():
   try:
@@ -19,7 +20,7 @@ def get_expenses():
   except models.DoesNotExist:
     return jsonify(data={}, status={"code":401, "message":"Error getting resources"})
 
-
+# New route
 @expense.route('/', methods=["POST"])
 def create_expenses():
   payload = request.get_json()
@@ -28,3 +29,12 @@ def create_expenses():
   expense_dict = model_to_dict(expense)
   return jsonify(data=expense_dict, status={"code": 201, "message": "Success"})
 
+# Individual Show route
+@expense.route('/<id>', methods=["GET"])
+def get_one_expense(id):
+  print(id, 'reserved_word?')
+  expense = models.Expense.get_by_id(id)
+  print(expense.__dict__)
+  return jsonify(data=model_to_dict(expense), status={"code": 200, "message":"Success"})
+
+# Update route
