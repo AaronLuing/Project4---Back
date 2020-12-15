@@ -44,4 +44,10 @@ def update_expense(id):
   query = models.Expense.update(**payload).where(models.Expense.id==id)
   query.execute()
   return jsonify(data=model_to_dict(models.Expense.get_by_id(id)), status={"code": 200, "message": "resource updated successfully"})
-  
+
+# Delete route
+@expense.route('/<id>', methods=["DELETE"])
+def delete_expense(id):
+  query = models.Expense.delete().where(models.Expense.id==id)
+  query.execute()
+  return jsonify(data='deleted', status={"code": 200, "message": "deletion successful"})
