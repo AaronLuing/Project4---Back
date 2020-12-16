@@ -12,10 +12,14 @@ class Users(UserMixin, Model):
   class Meta:
     database = DATABASE
 
+# field types learned from:
+# http://docs.peewee-orm.com/en/latest/peewee/models.html
+
 class Expense(Model):
   name = CharField()
   category = CharField()
   amount = IntegerField()
+  profile = ForeignKeyField(Users, backref='expenses')
   created_at = DateTimeField(default=datetime.datetime.now)
 
   class Meta:

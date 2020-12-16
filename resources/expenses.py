@@ -1,8 +1,8 @@
 import models
 
 from flask import Blueprint, jsonify, request
-
 from playhouse.shortcuts import model_to_dict
+from flask_login import login_required, current_user
 
 # First argument is blueprints name
 # Second argument is it's import_name
@@ -12,9 +12,10 @@ expense = Blueprint('expenses', 'expense')
 
 # Index route
 @expense.route('/', methods=["GET"])
+@login_required
 def get_expenses():
   try:
-    expenses = [model_to_dict(expense) for expense in models.Expense.select()]
+    expenses = [model_to_dict(expense) for expense in current_user.expenses]
     print(expenses)
     return jsonify(data=expenses, status={"code": 200, "message":"Success"})
   except models.DoesNotExist:
@@ -25,8 +26,10 @@ def get_expenses():
 def create_expenses():
   payload = request.get_json()
   print(payload)
-  expense = models.Expense.create(**payload)
-  expense_dict = model_to_dict(expense)
+  payload['profile'] = current_user.id
+
+  new_expense = models.Expense.create(**payload)
+  expense_dict = model_to_dict(new_expense)
   return jsonify(data=expense_dict, status={"code": 201, "message": "Success"})
 
 # Individual Show route
