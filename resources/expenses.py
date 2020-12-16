@@ -12,10 +12,11 @@ expense = Blueprint('expenses', 'expense')
 
 # Index route
 @expense.route('/', methods=["GET"])
-@login_required
+# @login_required
 def get_expenses():
   try:
-    expenses = [model_to_dict(expense) for expense in current_user.expenses]
+    # expenses = [model_to_dict(expense) for expense in current_user.expense]
+    expenses = [model_to_dict(expense) for expense in models.Expense.select()]
     print(expenses)
     return jsonify(data=expenses, status={"code": 200, "message":"Success"})
   except models.DoesNotExist:
