@@ -23,6 +23,6 @@ class Expense(Model):
 
 def initialize():
   DATABASE.connect()
-  DATABASE.create_tables([Expense], safe=True)
+  DATABASE.create_tables([Users, Expense], safe=True)
   print("TABLES Created")
   DATABASE.close()
