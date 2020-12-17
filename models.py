@@ -15,8 +15,8 @@ DATABASE_INFO = {
     'port': url.port,
 }
 
-DATABASE = PostgresqlDatabase(DATABASE_INFO.name,password=DATABASE_INFO.password,
-  port=DATABASE_INFO.port, host=DATABASE_INFO.host)
+DATABASE = PostgresqlDatabase(DATABASE_INFO['name'],password=DATABASE_INFO['password'],
+  port=DATABASE_INFO['port'], host=DATABASE_INFO['host'])
 
 class Users(UserMixin, Model):
   username = CharField(unique=True)
