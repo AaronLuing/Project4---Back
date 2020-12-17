@@ -7,7 +7,7 @@ import urllib.parse as urlparse
 urlparse.uses_netloc.append('postgres')
 url = urlparse.urlparse(os.environ['DATABASE_URL'])
 # for your config
-DATABASE = {
+DATABASE_INFO = {
     'engine': 'peewee.PostgresqlDatabase',
     'name': url.path[1:],
     'password': url.password,
@@ -15,7 +15,8 @@ DATABASE = {
     'port': url.port,
 }
 
-# DATABASE = PostgresqlDatabase('budget')
+DATABASE = PostgresqlDatabase(DATABASE_INFO.name,password=DATABASE_INFO.password,
+  port=DATABASE_INFO.port, host=DATABASE_INFO.host)
 
 class Users(UserMixin, Model):
   username = CharField(unique=True)
