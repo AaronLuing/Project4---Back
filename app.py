@@ -44,10 +44,13 @@ CORS(user, origins='*', supports_credentials=True)
 app.register_blueprint(expense, url_prefix='/api/v1/budget')
 app.register_blueprint(user, url_prefix='/user')
 
-# the default url ends in / ("website-url/")
 @app.route('/')
 def index():
-  return 'Hello World!'
+    return "<h1>Welcome to the server !!</h1>"
+
+@app.route('/surprise')
+def surprise():
+  return'<h1>SURPRISE!!!</h1>'
 
 # Run the app when the program starts
 if __name__ == '__main__':
