@@ -4,10 +4,6 @@ from flask import Blueprint, jsonify, request
 from playhouse.shortcuts import model_to_dict
 from flask_login import login_required, current_user
 
-# First argument is blueprints name
-# Second argument is it's import_name
-# Third argument is the url_prefix so we dont have to
-# prefix all our apis
 expense = Blueprint('expenses', 'expense')
 
 # Index route
