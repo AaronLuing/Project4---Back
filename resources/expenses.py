@@ -23,7 +23,7 @@ def get_expenses():
 def create_expenses():
   payload = request.get_json()
   print(payload)
-  payload['profile'] = current_user.id
+  # payload['profile'] = current_user.id
 
   new_expense = models.Expense.create(**payload)
   expense_dict = model_to_dict(new_expense)

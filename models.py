@@ -19,7 +19,8 @@ class Expense(Model):
   name = CharField()
   category = CharField()
   amount = IntegerField()
-  profile = ForeignKeyField(Users, backref='expenses')
+  userid = CharField()
+  # profile = ForeignKeyField(Users, backref='expenses')
   created_at = DateTimeField(default=datetime.datetime.now)
 
   class Meta:
