@@ -13,10 +13,11 @@ DATABASE_INFO = {
     'password': url.password,
     'host': url.hostname,
     'port': url.port,
+    'user': url.user
 }
 
 DATABASE = PostgresqlDatabase(DATABASE_INFO['name'],password=DATABASE_INFO['password'],
-  port=DATABASE_INFO['port'], host=DATABASE_INFO['host'])
+  port=DATABASE_INFO['port'], host=DATABASE_INFO['host'], user=DATABASE_INFO['user'])
 
 class Users(UserMixin, Model):
   username = CharField(unique=True)
