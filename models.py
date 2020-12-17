@@ -2,7 +2,7 @@ from peewee import *
 import datetime
 from flask_login import UserMixin
 import os
-import urlparse
+import urllib.parse as urlparse
 
 urlparse.uses_netloc.append('postgres')
 url = urlparse.urlparse(os.environ['DATABASE_URL'])
