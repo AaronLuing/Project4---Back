@@ -19,10 +19,12 @@
 # DATABASE = PostgresqlDatabase(DATABASE_INFO['name'],password=DATABASE_INFO['password'],
 #   port=DATABASE_INFO['port'], host=DATABASE_INFO['host'], user=DATABASE_INFO['user'])
 import os
+import datetime
 import urllib.parse as urlparse
 import psycopg2
 from flask import Flask
 from peewee import *
+from flask_login import UserMixin
 from flask_peewee.db import Database
 if 'HEROKU' in os.environ:
     DEBUG = False
