@@ -8,7 +8,7 @@ from playhouse.shortcuts import model_to_dict
 
 # first argument is the blueprints name
 # second argument is it's import_name
-# third argument is the url_prefix so we don't have to prefix all our urls with /user
+# third argument is the url_prefix so I don't have to prefix all my urls with /user
 user = Blueprint('users','user', url_prefix='/user')
 
 @user.route('/register', methods=["POST"])
