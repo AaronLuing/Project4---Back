@@ -22,6 +22,7 @@ import os
 import urllib.parse as urlparse
 import psycopg2
 from flask import Flask
+from peewee import *
 from flask_peewee.db import Database
 if 'HEROKU' in os.environ:
     DEBUG = False
