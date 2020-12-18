@@ -3,6 +3,7 @@ import models
 from flask import request, jsonify, Blueprint
 from flask_bcrypt import generate_password_hash, check_password_hash
 from flask_login import login_user, current_user, logout_user
+from flask_cors import CORS, cross_origin
 from playhouse.shortcuts import model_to_dict
 
 # first argument is the blueprints name
