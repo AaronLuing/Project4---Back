@@ -26,17 +26,17 @@ def load_user(userid):
     return None
 
 # Logic for our database connection
-@app.before_request
-def before_request():
-  """Connect to the database before each request"""
-  g.db = models.DATABASE
-  g.db.connect()
+# @app.before_request
+# def before_request():
+#   """Connect to the database before each request"""
+#   g.db = models.DATABASE
+#   g.db.connect()
 
-@app.after_request
-def after_request(response):
-  """Close the db connection after each request"""
-  g.db.close()
-  return response
+# @app.after_request
+# def after_request(response):
+#   """Close the db connection after each request"""
+#   g.db.close()
+#   return response
 
 CORS(expense, origins='*', supports_credentials=True)
 CORS(user, origins='*', supports_credentials=True)
