@@ -32,11 +32,14 @@ def load_user(userid):
 #   g.db = models.DATABASE
 #   g.db.connect()
 
-# @app.after_request
-# def after_request(response):
-#   """Close the db connection after each request"""
-#   g.db.close()
-#   return response
+@app.after_request
+def after_request(response):
+  # """Close the db connection after each request"""
+  # g.db.close()
+  # return response
+  header = response.headers
+  header['Access-Control-Allow-Origin'] = '*'
+  return response
 
 CORS(expense, origins='*', supports_credentials=True)
 CORS(user, origins='*', supports_credentials=True)
